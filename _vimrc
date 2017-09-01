@@ -54,10 +54,8 @@ Plug 'sstallion/vim-wtf'
 Plug 'junegunn/vim-easy-align'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
 
 call plug#end()
-call glaive#Install()
 
 syntax enable 
 filetype plugin indent on
