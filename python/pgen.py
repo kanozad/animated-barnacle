@@ -7,14 +7,9 @@ import random
 SPECIAL = '!@#$%^&*+?'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
-#RE_UPPER = re.compile("[A-Z]+")
-#RE_LOWER = re.compile("[a-z]+")
-#RE_DIGIT = re.compile("[0-9]+")
-#RE_SPEC = re.compile("[" + SPECIAL + "]+")
 RE_STRING ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL +"])" 
 
 def main(args):
-    #print(args)
     random.seed = (os.urandom(1024))
     for i in range(args.count):
         print(getPassword(args.length, args.validate, args.chars, args.rule))
@@ -24,17 +19,9 @@ def getPassword(length, validate, chars, rule):
     validation_rule = re.compile(rule)
     while True:
         x = ''.join(random.choice(chars) for i in range(length))
-        if(validate):
+        if validate:
             if not validation_rule.search(x):
                 continue
-            #if not RE_UPPER.search(x):
-                #continue
-            #if not RE_LOWER.search(x):
-                #continue
-            #if not RE_DIGIT.search(x):
-                #continue
-            #if not RE_SPEC.search(x):
-                #continue
         return x
 
 
