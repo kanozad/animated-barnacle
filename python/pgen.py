@@ -67,6 +67,7 @@ if __name__ == '__main__':
         default=RE_STRING)
 
     args = parser.parse_args()
+
     if(args.remove_ambiguity):
         import re
         args.chars = re.sub('[1l0O]', '', args.chars)
