@@ -4,7 +4,7 @@ import os
 import string
 import random
 
-SPECIAL = '!@#$%^&*+?'
+SPECIAL = '!@#$%&*'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
 RE_STRING ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL +"])" 
