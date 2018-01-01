@@ -1,59 +1,25 @@
 set nocompatible
 filetype off
 
-"set rtp+=~/vimfiles/bundle/Vundle.vim
-"call vundle#begin('~/vimfiles/bundle/')
+call plug#begin('~/.vim/bundle')
 
-call plug#begin('~/vimfiles/bundle')
-
-Plug 'bcicen/vim-vice'
-Plug 'blueshirts/darcula'
 Plug 'bronson/vim-visual-star-search'
-Plug 'davidhalter/jedi-vim'
-Plug 'dracula/vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
-Plug 'fneu/breezy'
 Plug 'godlygeek/tabular'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'itchyny/calendar.vim'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'Junza/Spink'
 Plug 'kien/ctrlp.vim'
-Plug 'klen/python-mode'
 Plug 'majutsushi/tagbar'
 Plug 'nanotech/jellybeans.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'rakr/vim-one'
 Plug 'rakr/vim-two-firewatch'
-Plug 'romainl/vim-cool'
-Plug 'rstacruz/sparkup'
-Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
-Plug 'sukima/xmledit'
-Plug 'tmhedberg/SimpylFold'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/c.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'sstallion/vim-wtf'
-Plug 'junegunn/vim-easy-align'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
 
 call plug#end()
 
@@ -117,9 +83,6 @@ set wildmode=full
 set wrap
 set wrapscan
 
-"set makeprg=ant
-set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-
 "====================================================================================
 if has("autocmd")
     autocmd BufEnter :filetype detect
@@ -166,8 +129,11 @@ endif
 
 if has("win16") || has("win32") || has("win64")
     let s:os = "win"
+    au GUIEnter * simalt ~x
 else
     let s:os = substitute(system('uname'), "\n", "", "")
+    set columns=256
+    set lines=158
 endif
 
 "====================================================================================

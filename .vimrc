@@ -74,6 +74,7 @@ set tabstop=4
 set tags=tags;~/;./tags
 set splitbelow
 set splitright
+set termguicolors
 set textwidth=120
 set visualbell
 set wildmenu
@@ -105,6 +106,7 @@ if has("autocmd")
         autocmd FileType python setlocal foldlevel=99 
         autocmd FileType python map <F9> :!python %
         autocmd FileType python lcd %:p:h
+        "autocmd FileType python nested :call tagbar#autoopen(0)
     augroup END
 
     augroup java
@@ -112,6 +114,7 @@ if has("autocmd")
         autocmd FileType java setlocal omnifunc=javacomplete#Complete
         autocmd FileType java setlocal makeprg=ant\ -f\ build/build.xml\ tomcat.deploy
         autocmd FileType java setlocal efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+        "autocmd FileType java nested :call tagbar#autoopen(0)
     augroup END
 
     autocmd BufRead,BufNewFile *.ddl setfiletype sql
