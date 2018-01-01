@@ -435,6 +435,3 @@ let g:vimwiki_list = [wiki_1]
 
 let g:one_allow_italics=1
 let g:airline_theme='one'
-
-let g:netrw_browse_split=4
-let g:netrw_winsize=20
