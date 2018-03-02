@@ -12,10 +12,11 @@ Plug 'majutsushi/tagbar'
 Plug 'nanotech/jellybeans.vim'
 Plug 'rakr/vim-one'
 Plug 'rakr/vim-two-firewatch'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/c.vim'
@@ -74,7 +75,6 @@ set tabstop=4
 set tags=tags;~/;./tags
 set splitbelow
 set splitright
-set termguicolors
 set textwidth=120
 set visualbell
 set wildmenu
@@ -106,7 +106,6 @@ if has("autocmd")
         autocmd FileType python setlocal foldlevel=99 
         autocmd FileType python map <F9> :!python %
         autocmd FileType python lcd %:p:h
-        "autocmd FileType python nested :call tagbar#autoopen(0)
     augroup END
 
     augroup java
@@ -114,7 +113,6 @@ if has("autocmd")
         autocmd FileType java setlocal omnifunc=javacomplete#Complete
         autocmd FileType java setlocal makeprg=ant\ -f\ build/build.xml\ tomcat.deploy
         autocmd FileType java setlocal efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-        "autocmd FileType java nested :call tagbar#autoopen(0)
     augroup END
 
     autocmd BufRead,BufNewFile *.ddl setfiletype sql
@@ -227,9 +225,12 @@ map <Right>                         <Nop>
 map <Left>                          <Nop>
 map <Up>                            <Nop>
 map <F11>                           :edit $MYVIMRC<CR>
-map <F3>                            :NERDTreeToggle<CR>
+"map <F3>                            :NERDTreeToggle<CR>
 map <F2>                            :vs.<CR>    
-map <A-F3>                          :Vexplore<CR>
+map <F3>                            :Explore.<CR>
+map <leader>e                       :e ~/Dropbox/exocortex<CR>
+map <C-F3>                          :e %:h<CR>
+map <A-F3>                          :E /home/kanozad/dev/workspaces<CR>
 map <F4>                            :TagbarToggle<CR>
 map <F5>                            :vimgrep /
 map <M-F5>                          :vimgrep /<C-R><C-W>/
@@ -269,10 +270,6 @@ nnoremap <silent> ]t                :tnext<CR>
 vmap <A-Down>                       xp`[V`]
 vmap <A-Up>                         xkP`[V`]
 
-nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
-
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -300,11 +297,11 @@ cmap <C-V>      <C-R>+
 cmap <S-Insert>     <C-R>+
 
 "NERDTree options
-let g:NERDTreeIgnore=['\.$', '\.\.$', '\.svn$', '\.class$', '\.jar$', '\.pdf$', '\.png$', '\.gif$', '\.settings$']
-let g:NERDChristmasTree=1
-let g:NERDTreeShowBookmarks=1
+"let g:NERDTreeIgnore=['\.$', '\.\.$', '\.svn$', '\.class$', '\.jar$', '\.pdf$', '\.png$', '\.gif$', '\.settings$']
+"let g:NERDChristmasTree=1
+"let g:NERDTreeShowBookmarks=1
 "let NERDTreeShowHidden=1
-let g:NERDTreeChDirMode=2
+"let g:NERDTreeChDirMode=2
 "let NERDTreeWinSize=45
 "let NERDTreeDirArrows=0
 
@@ -354,9 +351,6 @@ let g:ctrlp_custom_ignore = {
     \ }
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:EclimJavascriptValidate=0
-
-nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
-nnoremap <silent> <buffer> <cr> :JavaSearchContext
 
 " Define a command to make it easier to use
 command! -nargs=+ QFDo call QFDo(<q-args>)
