@@ -1,8 +1,9 @@
 set nocompatible
 filetype off
 
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/vimfiles/bundle')
 
+Plug 'blueshirts/darcula'
 Plug 'bronson/vim-visual-star-search'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
@@ -16,6 +17,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/c.vim'
@@ -29,7 +31,7 @@ filetype plugin indent on
 "let mapleader="\<space>"
 set autoread
 set backspace=indent,eol,start
-set ch=4
+set cmdheight=4
 set clipboard=unnamed
 set cursorline
 set dir=~/tmp
@@ -83,6 +85,9 @@ set wildmode=full
 set wrap
 set wrapscan
 
+"set makeprg=ant
+set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
+
 "====================================================================================
 if has("autocmd")
     autocmd BufEnter :filetype detect
@@ -129,11 +134,8 @@ endif
 
 if has("win16") || has("win32") || has("win64")
     let s:os = "win"
-    au GUIEnter * simalt ~x
 else
     let s:os = substitute(system('uname'), "\n", "", "")
-    set columns=256
-    set lines=158
 endif
 
 "====================================================================================
@@ -155,8 +157,7 @@ if has("gui")
     "color intellij
     "color jellybeans
     "color lucius
-    "color moria
-    "color moria
+    color moria
     "color one
     "color pyte
     "color railscasts
@@ -172,13 +173,14 @@ if has("gui")
     "color zenburn
     "set background=dark
     "color darcula
-    color badwolf
+    "color badwolf
+    color two-firewatch
 
     if s:os == "win"
         "set guifont=Courier_New:h8:cANSI
         "set guifont=Courier:h9:cANSI:qDRAFT
         "set guifont=Lucida_Console:h8:cANSI
-        set guifont=Consolas:h8:cANSI:qDRAFT
+        set guifont=Consolas:h9:cANSI:qDRAFT
         "set guifont=Menlo:h8:cANSI:qDRAFT
         "set guifont=Anonymous:h8:cANSI
         au GUIEnter * simalt ~x
@@ -201,13 +203,19 @@ else
     color wombat
 endif
 
+if !has("gui_running")
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    colorscheme zenburn
+endif     
+
 let treeExplVertical=1
 let treeExplHidden=1
 
 nnoremap <leader>c                  :set cursorline!<CR>
 nnoremap <leader>du                 :!dos2unix %<CR>
-map <A-h>                           :JavaCallHierarchy<CR>
-map <A-s>                           :JavaSearchContext<CR>
 imap <C-h>                          <Left>
 imap <C-j>                          <Down>
 imap <C-k>                          <Up>
@@ -231,13 +239,18 @@ map <Right>                         <Nop>
 map <Left>                          <Nop>
 map <Up>                            <Nop>
 map <F11>                           :edit $MYVIMRC<CR>
-map <A-F3>                          :Vexplore C:\dev\workspaces<CR>
-map <F2>                            :vs.<CR>    
+"map <A-F3>                          :E. <CR>
+"map <C-F3>                          :e %:h <CR>
+"map <F3>                            :Explore C:\dev\workspaces<CR>
 map <F3>                            :NERDTreeToggle<CR>
+map <C-F3>                          :NERDTree %:h<CR>
+map <A-F3>                          :NERDTree c:\dev\workspaces<CR>
+map <F2>                            :vs.<CR>    
 map <F4>                            :TagbarToggle<CR>
 map <F5>                            :vimgrep /
 map <M-F5>                          :vimgrep /<C-R><C-W>/
 map <M-l>                           :g/<C-R><C-W>/<CR> 
+map <leader>e                       :NERDTree c:\users\kanozad\Dropbox\exocortex<CR> 
 map <silent> <leader>g              g]
 map <silent> <leader>m              :verb map<CR>
 nmap <silent> <leader>n             :silent :nohlsearch<CR>
@@ -273,10 +286,6 @@ nnoremap gj                            j
 vmap <A-Down>                       xp`[V`]
 vmap <A-Up>                         xkP`[V`]
 
-nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
-
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -302,16 +311,6 @@ map <S-Insert>      "+gP
 
 cmap <C-V>      <C-R>+
 cmap <S-Insert>     <C-R>+
-
-"NERDTree options
-let g:NERDTreeIgnore=['\.$', '\.\.$', '\.svn$', '\.class$', '\.jar$', '\.pdf$', '\.png$', '\.gif$', '\.settings$']
-let g:NERDChristmasTree=1
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeBookmarksSort=1
-"let NERDTreeShowHidden=1
-let g:NERDTreeChDirMode=2
-"let NERDTreeWinSize=45
-"let NERDTreeDirArrows=0
 
 let g:ragtag_global_maps=1 
 
@@ -358,10 +357,6 @@ let g:ctrlp_custom_ignore = {
     \ 'link': '' 
     \ }
 let g:tagbar_ctags_bin='C:/dev/ctags58/ctags.exe'
-let g:EclimJavascriptValidate=0
-
-nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
-nnoremap <silent> <buffer> <cr> :JavaSearchContext
 
 " Define a command to make it easier to use
 command! -nargs=+ QFDo call QFDo(<q-args>)
@@ -400,4 +395,26 @@ let wiki_1.auto_toc = 1
 let g:vimwiki_list = [wiki_1]
 
 let g:one_allow_italics=1
-let g:airline_theme='one'
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_browse_split=0
+let g:netrw_altv=1
+let g:netrw_winsize=25
+
+"let g:airline_powerline_fonts=1
+
+"NERDTree Settings
+let NERDTreeShowBookmarks=1
+let g:NERDTreeIgnore=['\.$', '\.\.$', '\.svn$', '\.class$', '\.jar$', '\.pdf$', '\.png$', '\.gif$', '\.settings$']
+let g:NERDChristmasTree=1
+let g:NERDTreeBookmarksSort=1
+"let NERDTreeShowHidden=1
+let g:NERDTreeChDirMode=2
+"let NERDTreeWinSize=45
+"let g:NERDTreeDirArrows=0
+"let g:NERDTreeDirArrowExpandable='+'
+"let g:NERDTreeDirArrowCollapsible='~'
+"let g:NERDTreeCascadeSingleChildDir=0
+"let g:NERDTreeCascadeOpenSingleChildDir=1
+
+let $TMPDIR='c:\dev\tmp'
