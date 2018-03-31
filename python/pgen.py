@@ -7,7 +7,7 @@ import random
 SPECIAL = '!@#$%&*'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
-RE_STRING ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL +"])" 
+RE_STRING ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL +"])"
 
 def main(args):
     random.seed = (os.urandom(1024))
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         default=CHARS)
     parser.add_argument(
         "-ra",
-        "--remove_ambiguity",
+        "--remove-ambiguity",
         help="don't use ambiguous characters (1l0O)",
         action="store_true")
     parser.add_argument(
