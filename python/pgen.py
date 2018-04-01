@@ -7,7 +7,8 @@ import random
 SPECIAL = '!@#$%&*'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
-RE_STRING ="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL +"])"
+RE_STRING = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[" + SPECIAL + "])"
+
 
 def main(args):
     random.seed = (os.urandom(1024))
@@ -49,7 +50,7 @@ if __name__ == '__main__':
         "-v",
         "--validate",
         help="validate passwords",
-        action = "store_true")
+        action="store_true")
     parser.add_argument(
         "-ch",
         "--chars",
@@ -69,7 +70,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if(args.remove_ambiguity):
-        import re
         args.chars = re.sub('[1l0O]', '', args.chars)
     if args.display:
         print(args.chars)
