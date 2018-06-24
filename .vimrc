@@ -19,6 +19,7 @@ call minpac#add('scrooloose/nerdtree')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('sjl/gundo.vim')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-projectionist')
 call minpac#add('tpope/vim-scriptease')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
@@ -29,29 +30,6 @@ call minpac#add('vimwiki/vimwiki')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
-
-"call plug#begin('~/.vim/pack/bundle')
-"
-"Plug 'bronson/vim-visual-star-search'
-"Plug 'flazz/vim-colorschemes'
-"Plug 'godlygeek/tabular'
-"Plug 'jlanzarotta/bufexplorer'
-"Plug 'kien/ctrlp.vim'
-"Plug 'majutsushi/tagbar'
-"Plug 'nanotech/jellybeans.vim'
-"Plug 'rakr/vim-one'
-"Plug 'rakr/vim-two-firewatch'
-"Plug 'scrooloose/nerdtree'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'sjl/gundo.vim'
-"Plug 'tpope/vim-fugitive'
-"Plug 'tpope/vim-vinegar'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"Plug 'vim-scripts/c.vim'
-"Plug 'vimwiki/vimwiki'
-"
-"call plug#end()
 
 syntax enable 
 filetype plugin indent on
