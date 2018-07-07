@@ -35,8 +35,6 @@ command! PackClean call minpac#clean()
 
 syntax enable 
 filetype plugin indent on
-"nnoremap \ ,
-"let mapleader="\<space>"
 set autoread
 set backspace=indent,eol,start
 set ch=4
