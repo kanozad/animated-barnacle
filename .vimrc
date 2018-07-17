@@ -23,18 +23,18 @@ call minpac#add('tpope/vim-projectionist')
 call minpac#add('tpope/vim-scriptease')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-vinegar')
+call minpac#add('tpope/vim-dispatch')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('vim-scripts/c.vim')
 call minpac#add('vimwiki/vimwiki')
+call minpac#add('w0rp/ale')
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
 syntax enable 
 filetype plugin indent on
-"nnoremap \ ,
-"let mapleader="\<space>"
 set autoread
 set backspace=indent,eol,start
 set ch=4

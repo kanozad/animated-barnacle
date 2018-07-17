@@ -1,4 +1,3 @@
- 
 import re
 import os
 import string
@@ -16,7 +15,7 @@ def main(args):
         print(getPassword(args.length, args.validate, args.chars, args.rule))
 
 
-def getPassword(length, validate, chars, rule):
+def getPassword(length, validate, chars, rule)
     validation_rule = re.compile(rule)
     while True:
         x = ''.join(random.choice(chars) for i in range(length))
