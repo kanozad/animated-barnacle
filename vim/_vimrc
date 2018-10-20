@@ -8,15 +8,21 @@ Plug 'bronson/vim-visual-star-search'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'nanotech/jellybeans.vim'
 Plug 'rakr/vim-one'
 Plug 'rakr/vim-two-firewatch'
 Plug 'scrooloose/nerdtree'
+Plug 'sgur/vim-editorconfig'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -85,131 +91,55 @@ set wildmode=full
 set wrap
 set wrapscan
 
-"set makeprg=ant
-set efm=\ %#[javac]\ %#%f:%l:%c:%*\\d:%*\\d:\ %t%[%^:]%#:%m,\%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-
 "====================================================================================
-if has("autocmd")
-    autocmd BufEnter :filetype detect
-    "autocmd FileType * nested :call tagbar#autoopen(0)
+let g:mimic_font_style=3
+"color abra
+"color advantage
+"color apprentice
+"color aqua
+"color breezy
+"color candy
+"color chlordane
+"color codeschool
+"color darkspectrum
+"color darkZ
+"color github
+"color gruvbox
+"color intellij
+color jellybeans
+"color lucius
+"color moria
+"color one
+"color pyte
+"color railscasts
+"color spink
+"color summerfruit
+"color summerfruit256
+"color synic
+"color twilight
+"color wombat
+"color wombat256
+"color wtf
+"color xoria256
+"color zenburn
+"set background=dark
+"color darcula
+"color badwolf
+"color two-firewatch
 
-    augroup c
-        autocmd!
-        autocmd FileType c map <F9> :!cl %<CR>
-    augroup END
+"set guifont=Courier_New:h8:cANSI
+"set guifont=Courier:h9:cANSI:qDRAFT
+"set guifont=Lucida_Console:h8:cANSI
+set guifont=Consolas:h9:cANSI:qDRAFT
+"set guifont=Menlo:h8:cANSI:qDRAFT
+"set guifont=Anonymous:h8:cANSI
+au GUIEnter * simalt ~x
 
-    augroup javascript
-        autocmd!
-        autocmd FileType javascript map <F9> :w!<CR> :!"C:\dev\nodejs\node.exe" %<CR>
-    augroup END
-
-    augroup python
-        autocmd!
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType python setlocal expandtab
-        autocmd FileType python setlocal foldmethod=indent
-        autocmd FileType python setlocal foldlevel=99 
-        autocmd FileType python map <F9> :!python %
-        autocmd FileType python lcd %:p:h
-        "autocmd FileType python nested :call tagbar#autoopen(0)
-    augroup END
-
-    augroup java
-        autocmd!
-        autocmd FileType java setlocal omnifunc=javacomplete#Complete
-        autocmd FileType java setlocal makeprg=ant\ -f\ build/build.xml\ tomcat.deploy
-        autocmd FileType java setlocal efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
-        "autocmd FileType java nested :call tagbar#autoopen(0)
-    augroup END
-
-    autocmd BufRead,BufNewFile *.ddl setfiletype sql
-    autocmd FileReadPost <buffer> *.txt set noai
-
-    augroup web
-        autocmd!
-        autocmd FileType jsp set foldmethod=marker foldmarker=%>,<%
-    augroup END
-endif
+set guioptions-=T
+set guioptions-=r
+set guioptions-=l
+set guioptions-=m
 "====================================================================================
-
-if has("win16") || has("win32") || has("win64")
-    let s:os = "win"
-else
-    let s:os = substitute(system('uname'), "\n", "", "")
-endif
-
-"====================================================================================
-
-if has("gui")
-    let g:mimic_font_style=3
-    "color abra
-    "color advantage
-    "color apprentice
-    "color aqua
-    "color breezy
-    "color candy
-    "color chlordane
-    "color codeschool
-    "color darkspectrum
-    "color darkZ
-    "color github
-    "color gruvbox
-    "color intellij
-    "color jellybeans
-    "color lucius
-    color moria
-    "color one
-    "color pyte
-    "color railscasts
-    "color spink
-    "color summerfruit
-    "color summerfruit256
-    "color synic
-    "color twilight
-    "color wombat
-    "color wombat256
-    "color wtf
-    "color xoria256
-    "color zenburn
-    "set background=dark
-    "color darcula
-    "color badwolf
-    color two-firewatch
-
-    if s:os == "win"
-        "set guifont=Courier_New:h8:cANSI
-        "set guifont=Courier:h9:cANSI:qDRAFT
-        "set guifont=Lucida_Console:h8:cANSI
-        set guifont=Consolas:h9:cANSI:qDRAFT
-        "set guifont=Menlo:h8:cANSI:qDRAFT
-        "set guifont=Anonymous:h8:cANSI
-        au GUIEnter * simalt ~x
-    else
-        set guifont=Courier\ 10\ Pitch\ 9 
-        "set guifont=Andale\ Mono\ 10
-        set lines=999
-        set columns=999
-    endif
-
-    set guioptions-=T
-    set guioptions-=r
-    set guioptions-=l
-    set guioptions-=m
-else
-    set lines=43
-    set columns=166
-    color ibmedit
-    "color 0x7A69_dark
-    color wombat
-endif
-
-if !has("gui_running")
-    set term=xterm
-    set t_Co=256
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-    colorscheme zenburn
-endif     
 
 let treeExplVertical=1
 let treeExplHidden=1
@@ -316,33 +246,6 @@ let g:ragtag_global_maps=1
 
 let g:FoldMethod=1
 
-function! ShowJSP()
-    set foldmethod=marker
-    set foldmarker=%>,<%
-    let g:FoldMethod = 1
-endfunction
-
-function! ShowHTML()
-    set foldmethod=marker
-    set foldmarker=<%,%>
-    let g:FoldMethod = 0
-endfunction
-
-function! ToggleFold() 
-    if g:FoldMethod == 1
-        exe 'call ShowHTML()'
-    else
-        exe 'call ShowJSP()'
-    endif
-endfunction
-
-function! s:VSetSearch()
-    let temp = @s
-    norm! gv"sy
-    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
-    let @s = temp
-endfunction
-
 map <A-Right>           :bn<CR>
 map <A-Left>            :bp<CR>
 
@@ -358,35 +261,6 @@ let g:ctrlp_custom_ignore = {
     \ }
 let g:tagbar_ctags_bin='C:/dev/ctags58/ctags.exe'
 
-" Define a command to make it easier to use
-command! -nargs=+ QFDo call QFDo(<q-args>)
-
-" Function that does the work
-function! QFDo(command)
-    " Create a dictionary so that we can
-    " get the list of buffers rather than the
-    " list of lines in buffers (easy way
-    " to get unique entries)
-    let buffer_numbers = {}
-    " For each entry, use the buffer number as 
-    " a dictionary key (won't get repeats)
-    for fixlist_entry in getqflist()
-        let buffer_numbers[fixlist_entry['bufnr']] = 1
-    endfor
-    " Make it into a list as it seems cleaner
-    let buffer_number_list = keys(buffer_numbers)
-
-    " For each buffer
-    for num in buffer_number_list
-        " Select the buffer
-        exe 'buffer' num
-        " Run the command that's passed as an argument
-        exe a:command
-        " Save if necessary
-        update
-    endfor
-endfunction
-
 let wiki_1 = {}
 let wiki_1.path = 'C:\Users\kanozad\Dropbox\exocortex\vimwiki'
 let wiki_1.path_html = 'C:\Users\kanozad\Dropbox\exocortex\vimwiki\html'
@@ -401,8 +275,6 @@ let g:netrw_browse_split=0
 let g:netrw_altv=1
 let g:netrw_winsize=25
 
-"let g:airline_powerline_fonts=1
-
 "NERDTree Settings
 let NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\.$', '\.\.$', '\.svn$', '\.class$', '\.jar$', '\.pdf$', '\.png$', '\.gif$', '\.settings$']
@@ -416,5 +288,3 @@ let g:NERDTreeChDirMode=2
 "let g:NERDTreeDirArrowCollapsible='~'
 "let g:NERDTreeCascadeSingleChildDir=0
 "let g:NERDTreeCascadeOpenSingleChildDir=1
-
-let $TMPDIR='c:\dev\tmp'
