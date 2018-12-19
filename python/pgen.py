@@ -3,7 +3,7 @@ import os
 import string
 import random
 
-#SPECIAL = '!@#$%&*'
+# SPECIAL = '!@#$%&*'
 SPECIAL = '~!@#$%^&*_+-=:;?.'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
