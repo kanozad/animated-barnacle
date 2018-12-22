@@ -54,7 +54,6 @@ if __name__ == '__main__':
         else:
             activity = EXTREME
     else:
-        global MODERATE
         activity = MODERATE
     if not args.height:
         raise "Height is required"
