@@ -6,7 +6,9 @@ import com.barnacle.scrapple.exceptions.ResourceNotFoundException;
 import com.barnacle.scrapple.repositories.CommentRepository;
 import com.barnacle.scrapple.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +23,26 @@ public class PostController {
     @Autowired
     CommentRepository commentRepository;
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "")
-    public Post createPost(@RequestBody Post post) {
-        return postRepository.save(post);
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+
+        Post savedPost = postRepository.save(post);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Header1", "Value1");
+        responseHeaders.set("Header2", "Value2");
+
+        return new ResponseEntity<>(savedPost, responseHeaders, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "")
-    public List<Post> listPosts() {
-        return postRepository.findAll();
+    public ResponseEntity<List<Post>> listPosts() {
+        List<Post> allPosts =  postRepository.findAll();
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Header1", "Value1");
+        responseHeaders.set("Header2", "Value2");
+
+        return new ResponseEntity<>(allPosts, responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
