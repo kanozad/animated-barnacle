@@ -12,8 +12,10 @@ def alphabet_cycle():
         for c in string.lowercase:
             yield c
 
+
 q = zip('lorem ipsum', alphabet_cycle())
-print q
+
+print(q)
 
 
 def alpha_numeric_cycle():
@@ -23,7 +25,8 @@ def alpha_numeric_cycle():
             yield "%s%d" % (c, n)
         n = n + 1
 
+
 iter = alpha_numeric_cycle()
 
 for i in range(200):
-    print iter.next()
+    print(iter.next())
