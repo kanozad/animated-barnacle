@@ -36,8 +36,8 @@ def main(args):
 def roll(n, d=6):
     """
 
-    :param n:
-    :param d:
+    :param n: number of dice to roll
+    :param d: number of sides per die
     :param bonus:
     :return:
     """
