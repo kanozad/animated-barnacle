@@ -64,7 +64,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-r",
         "--rule",
-        help="use the specified (regex) rule to validate passwords",
+        help="use the specified (regex) rule to validate passwords - no effect if -v isn't also specified",
         default=RE_STRING)
 
     args = parser.parse_args()
