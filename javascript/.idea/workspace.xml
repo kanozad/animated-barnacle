@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1184c580-121a-4b13-8919-7b017aad892e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ninja.js" beforeDir="false" afterPath="$PROJECT_DIR$/ninja.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +78,8 @@
       <workItem from="1549483934727" duration="55000" />
       <workItem from="1549484043987" duration="153000" />
       <workItem from="1568042843062" duration="1247000" />
+      <workItem from="1569758476199" duration="669000" />
+      <workItem from="1569763124564" duration="1220000" />
     </task>
     <servers />
   </component>
@@ -90,7 +91,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
