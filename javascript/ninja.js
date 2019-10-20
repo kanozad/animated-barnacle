@@ -79,7 +79,7 @@ console.log('BAAAAAA'.match(re));
 
 console.log('fuck you');
 
-val = "O'Mara";
+var val = "O'Mara";
 console.log(val);
 val = val.replace(/'/g, "\\'");
 console.log(val);
