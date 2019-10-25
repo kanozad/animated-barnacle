@@ -77,9 +77,13 @@ console.log('ba'.match(re));
 console.log('BA'.match(re));
 console.log('BAAAAAA'.match(re));
 
-console.log('fuck you');
 
 var val = "O'Mara";
 console.log(val);
 val = val.replace(/'/g, "\\'");
 console.log(val);
+
+var a = [1, 2, 3, 4, 5, 6]
+console.log(a);
+console.log(JSON.stringify(a));
+console.log(a.join(","));
