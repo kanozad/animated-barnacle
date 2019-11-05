@@ -4,6 +4,7 @@ import string
 import random
 
 SPECIAL = '!@#$%&*'
+AMBIGUOUS = '[1l0O]'
 # SPECIAL = '~!@#$%^&*_+-=:;?.'
 
 CHARS = string.ascii_letters + string.digits + SPECIAL
@@ -70,7 +71,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if(args.remove_ambiguity):
-        args.chars = re.sub('[1l0O]', '', args.chars)
+        args.chars = re.sub(AMBIGUOUS, '', args.chars)
     if args.display:
         print(args.chars)
         print(args.rule)
@@ -80,7 +81,6 @@ if __name__ == '__main__':
     main(args)
 
 """
-
 nizp%*k99L&gZUqLGU7$W7BXVfN3ZWuFEIQg9Ed9ZrbkebfBBw3qByI$k!ska*7KmNy2EPJEdrI%$QQpBH8s#8gv69tBjqI3jw!W
 koGQ9zJ@@uLHMfqa8cQ9U$2XwqrrFgbYInMYcv&r%RmQ8DsoWAXymimUHBRRU9FriGGaW@r%MkKRuWQIaLhMvGKhS*ERgx7hqU5!
 GkpwJtRI8bcPmmiV23sxjiH9ojMb@7pZ#RJ!&n9NpBaoQZWH9XPCFursDLdtwcBt#&fsvCw5ew8gDRMr52C5DM!RIPg7axAvnLvy
