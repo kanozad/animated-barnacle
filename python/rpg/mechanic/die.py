@@ -9,7 +9,7 @@ def main(args):
 
     for x in range(30):
         r = roll(random.randint(6, 8))
-        t = random.randint(1, 4)
+        t = random.randint(1, 4) 
         print(
             r, hits(r), total(r), is_glitch(r), is_critical_glitch(r), is_success(
                 r, t), ("(%s)" %
