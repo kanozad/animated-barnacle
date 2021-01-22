@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
+import { Model } from './model';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-todo',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'todo';
+  model = new Model();
+
+  getName(): string {
+    return this.model.user;
+  }
+
+  getTodoItems(): any {
+    return this.model.items;
+  }
 }
