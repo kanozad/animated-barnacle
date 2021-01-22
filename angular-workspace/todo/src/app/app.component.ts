@@ -15,6 +15,7 @@ export class AppComponent {
   }
 
   getTodoItems(): any {
-    return this.model.items;
+    // @ts-ignore
+    return this.model.items.filter(item => !item.done);
   }
 }
